@@ -1,38 +1,375 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=AR+One+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lilita+One&display=swap");
+* {
+  padding: 0;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.bigbox {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.navbar {
+  background: transparent;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 4.5rem;
+  color: aliceblue;
+  position: relative;
+  font-family: "Encode Sans SC", sans-serif;
+}
+
+.nav-items {
+  width: auto;
+  display: flex;
+  gap: 2rem;
+  margin-right: 8rem;
+  margin-top: 0.5rem;
+}
+
+.Login {
+  width: 4rem;
+  height: 2rem;
+  background-color: #f907fc;
+  background-image: linear-gradient(315deg, #f907fc 0%, #05d6d9 74%);
+  color: white;
+  font-family: "AR One Sans", sans-serif;
+  border-radius: 7px;
+  font-weight: bolder;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  position: absolute;
+  top: 53%;
+  transform: translateY(-50%);
+  right: 2rem;
 }
 
-.App-link {
-  color: #61dafb;
+.Logo {
+  position: absolute;
+  left: -2rem;
+  height: 3.5rem;
+  top: 56%;
+  transform: translateY(-50%);
+  filter: hue-rotate(752deg);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Code-Editor {
+  height: 100%;
+  width: 100%;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.code-editor-box {
+  height: 100%;
+  width: 75%;
+  margin-top: 4.5rem;
+  margin-left: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow-y: hidden;
+}
+
+.run-btn {
+  margin-left: 4%;
+  font-family: "AR One Sans", sans-serif;
+  width: 5rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: whitesmoke;
+  background-color: #f907fc;
+  background-image: linear-gradient(315deg, #f907fc 0%, #05d6d9 74%);
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 12rem;
+  /* padding: 10px 13px; */
+  /* position: absolute; */
+}
+
+.io {
+  position: absolute;
+  height: 100vh;
+  top: 0;
+  margin-top: 4.5rem;
+  width: 29%;
+  margin-left: 79%;
+  display: flex;
+  flex-direction: column;
+  color: whitesmoke;
+  font-family: "Encode Sans SC", sans-serif;
+}
+
+.input {
+  margin-top: 2rem;
+  margin-left: 1rem;
+  color: #69eeff;
+  font-weight: bolder;
+  display: flex;
+  flex-direction: column;
+}
+.input-box {
+  border-radius: 0px;
+  margin-top: 1rem;
+  width: 80%;
+  height: 10rem;
+  color: whitesmoke;
+  border-style: none;
+  vertical-align: text-top;
+  resize: none;
+  border-width: 1px;
+  background-color: rgba(0, 0, 0, 0.234);
+}
+.output {
+  margin-top: 16rem;
+  margin-left: 1rem;
+  color: #69eeff;
+  font-weight: bolder;
+  position: absolute;
+  width: 85%;
+}
+
+.output-box {
+  border-radius: 5px;
+  margin-top: 1rem;
+  height: 6rem;
+  background-color: rgba(0, 0, 0, 0.234);
+  width: 80%;
+  border-width: 1px;
+  color: rgb(172, 166, 166);
+  font-size: 12px;
+}
+
+.runimg {
+  height: 1rem;
+  position: absolute;
+  margin-right: 3.4rem;
+}
+
+.run-btn-text {
+  margin-left: 0.3rem;
+  margin-top: -0.1rem;
+}
+
+.status {
+  margin-left: 1rem;
+  margin-top: 2rem;
+}
+
+.time {
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+}
+
+.memory {
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+}
+
+#languages {
+  left: 19rem;
+  margin-top: -5.4rem;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #69eeff;
+  color: #69eeff;
+  border-radius: 5px;
+  width: 240px;
+  position: absolute;
+  height: 70%;
+  background-color: transparent;
+  height: 2.7rem;
+}
+
+#languages:focus {
+  outline: none;
+}
+
+#languages option {
+  font-size: 18px;
+  background: #282828;
+  color: whitesmoke;
+}
+
+#languages option:hover {
+  background-color: #f907fc;
+  background-image: linear-gradient(315deg, #f907fc 0%, #05d6d9 74%);
+  color: #fff;
+}
+#themes {
+  left: 39rem;
+  margin-top: -5.4rem;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #69eeff;
+  border-radius: 5px;
+  width: 240px;
+  position: absolute;
+  height: 70%;
+  background-color: transparent;
+  color: #69eeff;
+  height: 2.7rem;
+}
+
+#themes:focus {
+  outline: none;
+}
+
+#themes option {
+  font-size: 16px;
+  background: #282828;
+  color: whitesmoke;
+}
+
+#themes option:hover {
+  background-color: #f907fc;
+  background-image: linear-gradient(315deg, #f907fc 0%, #05d6d9 74%);
+  color: #fff;
+}
+
+.gear-gif {
+  margin-left: 50%;
+  margin-top: 4%;
+  height: 25rem;
+}
+
+.landing-1 {
+  margin-top: -1.9rem;
+  width: 100vw;
+  height: 50rem;
+  background: url("./assets/galaxy.jpg");
+  background-size: cover;
+  box-shadow: inset 0 0 100em 12em #000;
+  /* filter: brightness(70%); */
+  display: flex;
+  justify-content: center;
+}
+
+.welcome-container {
+  position: absolute;
+  margin-left: -7rem;
+  height: 10rem;
+  width: 80rem;
+  height: 30rem;
+  margin-top: 4rem;
+}
+.welcome-text {
+  color: whitesmoke;
+  font-family: "Lilita One", cursive;
+  margin-left: 6rem;
+  margin-top: 5%;
+  position: absolute;
+  font-size: 5rem;
+}
+.welcome-passage {
+  color: whitesmoke;
+  font-family: "AR One Sans", sans-serif;
+  position: absolute;
+  margin-left: 6rem;
+  margin-top: 20%;
+  font-size: 1.5rem;
+  font-weight: lighter;
+  width: 45rem;
+}
+
+.code-btn {
+  position: absolute;
+  margin-top: 28%;
+  margin-left: 6rem;
+  width: 7rem;
+  height: 2.5rem;
+  font-family: "AR One Sans", sans-serif;
+  background-color: transparent;
+  color: #f907fc;
+  border: solid #f907fc;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.code-btn:hover {
+  background-color: #f907fc;
+  color: whitesmoke;
+}
+
+.code-editor-gif {
+  position: absolute;
+  margin-top: 4rem;
+  margin-left: 50rem;
+  height: 20rem;
+  width: 30rem;
+  opacity: 0.9;
+  border-radius: 2rem;
+}
+
+.landing-2 {
+  height: 45rem;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(253, 253, 253);
+}
+.feature-container {
+  position: absolute;
+  margin-left: -7rem;
+  height: 10rem;
+  width: 85rem;
+  height: 25rem;
+  margin-top: 4rem;
+}
+.line-1 {
+  position: absolute;
+  border: solid #f907fc;
+  width: 10rem;
+  height: 0.1rem;
+  background-color: #f907fc;
+  margin-top: -10rem;
+  margin-left: 44rem;
+}
+.Feature-text {
+  color: #282828;
+  font-family: "Lilita One", cursive;
+  font-size: 3rem;
+  margin-left: 55rem;
+}
+
+.Feature-list {
+  font-family: "AR One Sans", sans-serif;
+  color: #282828;
+  position: absolute;
+  margin-left: 57rem;
+  margin-top: 2rem;
+  font-size: 1.4rem;
+}
+
+.compile-2 {
+  height: 20rem;
+  margin-top: -4rem;
+  margin-left: 5rem;
+  border-radius: 10px;
+  opacity: 0.9;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.lang-images {
+  position: absolute;
+  margin-left: 60rem;
+}
+.lang-images img {
+  height: 2rem;
+  margin-top: -3rem;
+  margin-right: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
