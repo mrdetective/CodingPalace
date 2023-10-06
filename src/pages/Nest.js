@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Navbar from "../components/navbar";
 import CodeEditor from "../components/Code-Editor";
 import IO from "../components/IO";
-function Palace() {
+function Nest() {
   const [code, setCode] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState({
     language: "javascript",
@@ -10,8 +10,8 @@ function Palace() {
   });
   return (
     <div>
+      <Navbar backgroundColor={"#303030"} />
       <div className="bigbox">
-        <Navbar backgroundColor={"#303030"} />
         <CodeEditor
           code={code}
           setCode={setCode}
@@ -28,4 +28,4 @@ function Palace() {
   );
 }
 
-export default Palace;
+export default Nest;

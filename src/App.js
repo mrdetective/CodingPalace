@@ -1,5 +1,5 @@
 import "./App.css";
-import Palace from "./pages/Palace";
+import Nest from "./pages/Nest";
 import Landing from "./pages/Landing";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/palace" element={<Palace />}></Route>
+          <Route path="/Nest" element={<Nest />}></Route>
           <Route path="/" element={<Landing />}></Route>
         </Routes>
       </BrowserRouter>
