@@ -6,6 +6,10 @@ function IO({backgroundColor, code, selectedLanguage}) {
   const [loading, setloading] = useState(false);
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  const [status, setStatus] = useState("");
+  const [time, setTime] = useState("");
+  const [memory, setMemory] = useState("");
+
   const CheckStatus = async (token) => {
     const options = {
       method: "GET",
@@ -22,8 +26,12 @@ function IO({backgroundColor, code, selectedLanguage}) {
     try {
       const response = await axios.request(options);
       setOutput(atob(response.data.stdout));
+      setStatus(response.data.status.description);
+      setTime(response.data.time);
+      setMemory(response.data.memory);
       setloading(false);
     } catch (error) {
+      setloading(false);
       console.error(error);
     }
   };
@@ -85,9 +93,9 @@ function IO({backgroundColor, code, selectedLanguage}) {
         </div>
         <div className="run-btn-text">Run</div>
       </button>
-      <div className="status">Status: </div>
-      <div className="time">Time: </div>
-      <div className="memory">Memory: </div>
+      <div className="status">Status: {status}</div>
+      <div className="time">Time: {time}</div>
+      <div className="memory">Memory: {memory}</div>
     </div>
   );
 }

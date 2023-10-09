@@ -55,7 +55,7 @@
   right: 2rem;
   cursor: pointer;
 }
-.sign-up {
+.Create-Account {
   width: 6rem;
   height: 1.9rem;
   background: transparent;
@@ -79,7 +79,7 @@
   background-color: transparent;
   color: #ad72fe;
 }
-.sign-up:hover {
+.Create-Account:hover {
   background-color: #ad72fe;
   color: whitesmoke;
 }
@@ -234,15 +234,17 @@
   background: #282828;
   color: whitesmoke;
 }
-#languages option::after {
-  height: 7rem;
-}
 
 #languages option:hover {
   background-color: #ad72fe;
   background-image: linear-gradient(315deg, #ad72fe 0%, #05d6d9 74%);
   color: #fff;
 }
+
+#languages option::after {
+  width: 2rem;
+}
+
 #themes {
   left: 39rem;
   margin-top: 1.1rem;
@@ -515,3 +517,87 @@ footer {
   color: #ad72fe;
   cursor: pointer;
 }
+
+/* Login Page */
+.main-login-box {
+  position: absolute;
+  background-size: 65%;
+  background-position-x: right;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  height: 35rem;
+  width: 70rem;
+  margin-top: 50rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
+}
+.login-box {
+  position: absolute;
+  height: 38rem;
+  width: 30rem;
+  /* border: solid 1px rgb(213, 199, 237); */
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(30, 27, 27);
+}
+
+.login-email {
+  height: 3rem;
+  width: 23rem;
+  margin-top: 6rem;
+  background-color: #333131;
+  border-style: none;
+  color: whitesmoke;
+  text-align: center;
+  font-size: medium;
+  position: absolute;
+}
+.login-password {
+  height: 3rem;
+  width: 23rem;
+  margin-top: 15rem;
+  background-color: #333131;
+  border-style: none;
+  color: whitesmoke;
+  text-align: center;
+  font-size: medium;
+  position: absolute;
+}
+
+.login-btn {
+  position: absolute;
+  margin-top: 26rem;
+  height: 3rem;
+  width: 6rem;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: larger;
+  background: transparent;
+  border: solid #ad72fe;
+  color: #ad72fe;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background-color: #ad72fe;
+  color: whitesmoke;
+}
+
+.login-gif {
+  position: absolute;
+  height: 15rem;
+  margin-bottom: 16rem;
+}
+.create-account-text {
+  color: rgb(215, 196, 246);
+  font-family: "AR One Sans", sans-serif;
+  margin-top: 34rem;
+}
+
+/* Create Account */
+.

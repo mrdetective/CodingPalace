@@ -11,8 +11,12 @@ function Navbar({backgroundColor}) {
         <Link to="/">
           <div className="Logo">DevNest</div>
         </Link>
-        <div className="sign-up ">Sign-up</div>
-        <div className="Login">Login</div>
+        <Link to="/login">
+          <div className="Login">Login</div>
+        </Link>
+        <Link to="/createaccount">
+          <div className="Create-Account">Sign up</div>
+        </Link>
       </div>
     </nav>
   );
