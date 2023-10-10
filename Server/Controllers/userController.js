@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const registerUser = asyncHandler(async (req, res) => {
   const {name, email, password} = req.body;
@@ -32,7 +33,18 @@ const loginUser = asyncHandler(async (req, res) => {
   }
   const user = await User.findOne({email});
   if (user && (await bcrypt.compare(password, user.password))) {
-    res.json({message: "Successfully logged in!"});
+    const accessToken = jwt.sign(
+      {
+        user: {
+          email: user.email,
+          name: user.name,
+          id: user.id,
+        },
+      },
+      process.env.ACCESS_TOKEN_SECRET,
+      {expiresIn: "1h"}
+    );
+    res.json({accessToken});
   } else {
     res.status(401);
     throw new Error("The password is not valid");
