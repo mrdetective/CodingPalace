@@ -7,7 +7,7 @@ const getCodingFiles = asyncHandler(async (req, res) => {
 });
 
 const createCodingFiles = asyncHandler(async (req, res) => {
-  const {filename, code, data_created, last_edited} = req.body;
+  const {filename, code, theme, language, data_created, last_edited} = req.body;
   if (!filename || !code || !data_created || !last_edited) {
     res.status(400);
     throw new Error("All fields are mandatory");
@@ -23,6 +23,8 @@ const createCodingFiles = asyncHandler(async (req, res) => {
   const codefile = await codingFiles.create({
     filename,
     code,
+    theme,
+    language,
     data_created,
     last_edited,
     user_id: req.user.id,
@@ -32,7 +34,7 @@ const createCodingFiles = asyncHandler(async (req, res) => {
 
 const getCodingFile = asyncHandler(async (req, res) => {
   const codeFile = await codingFiles.findOne({
-    file_name: req.body.filename,
+    file_name: req.params.filename,
     user_id: req.user.id,
   });
   res.status(200).json(codeFile);

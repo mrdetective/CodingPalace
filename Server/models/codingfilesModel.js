@@ -7,14 +7,20 @@ const codingfileSchema = mongoose.Schema({
     ref: "User",
   },
   file_name: {
-    type: {
-      type: String,
-      required: [true, "Please add the file name"],
-    },
+    type: String,
+    required: [true, "Please add the file name"],
   },
   code: {
     type: String,
     required: [true, "Please add your code in order to save it"],
+  },
+  theme: {
+    type: String,
+    required: [true, "Please add your theme"],
+  },
+  language: {
+    type: String,
+    required: [true, "Please add your language"],
   },
   date_created: {
     type: String,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Navbar from "../components/navbar";
 import compiler from "../assets/compiler.gif";
 import compiler2 from "../assets/compile-2.gif";
@@ -11,6 +11,9 @@ import linkedin from "../assets/linkedin.png";
 import github from "../assets/github.png";
 import coding from "../assets/coding.png";
 import {Link} from "react-router-dom";
+// import toast, {Toaster} from "react-hot-toast";
+
+import "react-toastify/dist/ReactToastify.css";
 function Landing() {
   return (
     <div>
