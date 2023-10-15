@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import Navbar from "../components/navbar";
 import logingif from "../assets/logingif.gif";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const submitDetails = async () => {
     if (!email || !password) {
       console.log("No field should be empty");
@@ -24,7 +24,10 @@ function Login() {
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
-      .then((data) => {})
+      .then((data) => {
+        localStorage.setItem("AccessToken", data.accessToken);
+        navigate("/dashboard");
+      })
       .catch((error) => {
         console.log("Incorrect email or password");
       });

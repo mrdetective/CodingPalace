@@ -10,5 +10,6 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/codingfiles", require("./routes/CodeRoutes"));
 app.use(errorHandler);
 app.listen(port);

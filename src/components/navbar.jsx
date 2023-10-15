@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import "../App.css";
-import logo from "../assets/CodingPalace.png";
-import {languageOptions} from "./languages";
-import {allthemes} from "./getThemes";
+import {languageOptions} from "../utils/languages";
+import {allthemes} from "../utils/getThemes";
 import {Link} from "react-router-dom";
+import logout from "../assets/logout.png";
+
 function Navbar({backgroundColor}) {
   return (
     <nav className="navbar" style={{backgroundColor}}>
@@ -17,6 +18,9 @@ function Navbar({backgroundColor}) {
         <Link to="/createaccount">
           <div className="Create-Account">Sign up</div>
         </Link>
+        <div className="logout">
+          <img className="logout" src={logout} alt="logout" />
+        </div>
       </div>
     </nav>
   );

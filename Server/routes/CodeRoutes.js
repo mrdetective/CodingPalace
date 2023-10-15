@@ -16,3 +16,5 @@ router
   .get(getCodingFile)
   .put(updatecodingFile)
   .delete(deleteCodingFile);
+
+module.exports = router;

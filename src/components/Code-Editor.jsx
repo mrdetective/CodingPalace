@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import Editor from "@monaco-editor/react";
 import {loader} from "@monaco-editor/react";
-import {allthemes} from "./getThemes";
-import {languageOptions} from "./languages";
+import {allthemes} from "../utils/getThemes";
+import {languageOptions} from "../utils/languages";
 
 function CodeEditor({code, setCode, selectedLanguage, setSelectedLanguage}) {
   const [selectedTheme, setSelectedTheme] = useState("vs-dark");
@@ -49,6 +49,7 @@ function CodeEditor({code, setCode, selectedLanguage, setSelectedLanguage}) {
           </option>
         ))}
       </select>
+      <button className="save-btn">Save</button>
       <div
         className="code-editor-box"
         value={selectedLanguage}
