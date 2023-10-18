@@ -25,17 +25,26 @@ function IO({backgroundColor, code, selectedLanguage}) {
     };
     try {
       const response = await axios.request(options);
-      setOutput(atob(response.data.stdout));
-      setStatus(response.data.status.description);
-      setTime(response.data.time);
-      setMemory(response.data.memory);
-      setloading(false);
+      const statusId = response.data.status.id;
+      console.log(statusId);
+      if (statusId === 1 || statusId === 2) {
+        setTimeout(() => {
+          CheckStatus(token);
+        }, 2000);
+        return;
+      } else {
+        setOutput(atob(response.data.stdout));
+        setStatus(response.data.status.description);
+        setTime(response.data.time);
+        setMemory(response.data.memory);
+        setloading(false);
+      }
     } catch (error) {
       setloading(false);
       console.error(error);
     }
   };
-  const compile = async () => {
+  const CompileCode = async () => {
     setloading(true);
     const formdata = {
       language_id: parseInt(selectedLanguage.id),
@@ -79,7 +88,7 @@ function IO({backgroundColor, code, selectedLanguage}) {
         Output
         <pre className="output-box">{output}</pre>
       </div>
-      <button className="run-btn" onClick={compile}>
+      <button className="run-btn" onClick={CompileCode}>
         <img
           className="runimg"
           src={runimg}

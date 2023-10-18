@@ -4,7 +4,14 @@ import {loader} from "@monaco-editor/react";
 import {allthemes} from "../utils/getThemes";
 import {languageOptions} from "../utils/languages";
 
-function CodeEditor({code, setCode, selectedLanguage, setSelectedLanguage}) {
+function CodeEditor({
+  code,
+  setCode,
+  selectedLanguage,
+  setSelectedLanguage,
+  savebtn,
+  setsavebtn,
+}) {
   const [selectedTheme, setSelectedTheme] = useState("vs-dark");
   useEffect(() => {
     for (let key in allthemes) {
@@ -49,7 +56,9 @@ function CodeEditor({code, setCode, selectedLanguage, setSelectedLanguage}) {
           </option>
         ))}
       </select>
-      <button className="save-btn">Save</button>
+      <button className="save-btn" style={savebtn ? {} : {display: "none"}}>
+        Save
+      </button>
       <div
         className="code-editor-box"
         value={selectedLanguage}

@@ -34,7 +34,6 @@ function CreateAccount() {
         if (response.ok) {
           navigate("/login", {replace: true});
         } else {
-          console.log(response);
         }
       } catch (err) {
         console.log(err);

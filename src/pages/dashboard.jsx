@@ -39,9 +39,11 @@ function Dashboard() {
         }
       })
       .then((data) => {
+        // console.log(data[0]._id);
         const newfiles = [];
         data.forEach((element) => {
           var newfile = {
+            id: data[0]._id,
             filename: element.file_name,
             language: element.language,
             dateCreated: element.date_created,
@@ -65,8 +67,8 @@ function Dashboard() {
   };
 
   const handleDeleteFileDialogOpen = (index) => {
-    handleDeleteFileDisplay(true);
     setfileIndex(index);
+    handleDeleteFileDisplay(true);
   };
 
   const handleDeleteFileDialogClose = () => {
@@ -200,11 +202,19 @@ function Dashboard() {
           <div className="file-list">
             {files.map((file, index) => {
               return (
-                <div className="files" key={`${index}`}>
+                <div className="files" key={`${file.id}`}>
                   <div className="thumbnail">
                     <img className="thumbnail-img" src={code} alt="Thumbnail" />
                   </div>
-                  <div className="filename">{file.filename}</div>
+                  <div
+                    className="filename"
+                    onClick={(e) => {
+                      navigate(`/dashboard/${file.filename}`, {
+                        state: file.filename,
+                      });
+                    }}>
+                    {file.filename}
+                  </div>
                   <div className="programming-language">
                     Language: {file.language}``
                   </div>

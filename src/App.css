@@ -313,6 +313,7 @@
   margin-top: 1.2rem;
   border-width: 1px;
   cursor: pointer;
+  /* display: none; */
 }
 
 .save-btn:hover {
@@ -791,6 +792,7 @@ footer {
   width: 20rem;
   background-color: #282828;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .file-limit-notice {

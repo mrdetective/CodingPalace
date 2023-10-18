@@ -29,9 +29,7 @@ const PrivateRoutes = () => {
         return response.json();
       }
     })
-    .then((data) => {
-      console.log(data);
-    })
+    .then((data) => {})
     .catch((error) => {
       toast("Login to use dashboard!", {
         icon: "⚠️",
