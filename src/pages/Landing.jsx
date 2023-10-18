@@ -30,7 +30,7 @@ function Landing() {
                 a web-based coding compiler to code in various languages without
                 the need for IDE downloads.
               </div>
-              <Link to="/Nest">
+              <Link to="/nest">
                 <button className="code-btn">Try it!</button>
               </Link>
               <img className="code-editor-gif" src={compiler} />

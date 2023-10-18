@@ -60,7 +60,10 @@ const updatecodingFile = asyncHandler(async (req, res) => {
 });
 
 const deleteCodingFile = asyncHandler(async (req, res) => {
-  await codingFiles.deleteOne({file_name: req.filename, user_id: req.user.id});
+  await codingFiles.deleteOne({
+    file_name: req.params.filename,
+    user_id: req.user.id,
+  });
   res.status(200);
 });
 

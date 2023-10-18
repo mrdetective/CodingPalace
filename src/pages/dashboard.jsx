@@ -10,12 +10,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
 import {height} from "@mui/system";
 import folders from "../assets/folders.png";
+import trash from "../assets/trash.png";
 
 function Dashboard() {
   const navigate = useNavigate();
-  const [openDialog, handleDisplay] = React.useState(false);
+  const [openCreateFileDialog, handleCreateFileDisplay] = useState(false);
+  const [openDeleteFileDialog, handleDeleteFileDisplay] = useState(false);
   const [files, setfiles] = useState([]);
   const [filename, setfilename] = useState("");
+  const [fileindex, setfileIndex] = useState(-1);
+
   useEffect(() => {
     const headers = {
       Authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
@@ -28,16 +32,6 @@ function Dashboard() {
     fetch(process.env.REACT_APP_FILES_LINK, fetchOptions)
       .then((response) => {
         if (!response.ok) {
-          toast("Login to use dashboard!", {
-            icon: "⚠️",
-            autoClose: 1000,
-            position: "top-center",
-            style: {
-              borderRadius: "5px",
-              background: "#333131",
-              color: "whitesmoke",
-            },
-          });
           console.log(response);
           navigate("/login");
         } else {
@@ -58,27 +52,27 @@ function Dashboard() {
         setfiles(newfiles);
       })
       .catch((error) => {
-        toast("Login to use dashboard!", {
-          icon: "⚠️",
-          autoClose: 1000,
-          position: "top-center",
-          style: {
-            borderRadius: "5px",
-            background: "#333131",
-            color: "whitesmoke",
-          },
-        });
-        navigate("/login");
+        console.log(error);
       });
   }, []);
 
-  const handleClose = () => {
-    handleDisplay(false);
+  const handleCreateFileDialogClose = () => {
+    handleCreateFileDisplay(false);
   };
 
-  const openDialogBox = () => {
-    handleDisplay(true);
+  const handleCreateFileDialogOpen = () => {
+    handleCreateFileDisplay(true);
   };
+
+  const handleDeleteFileDialogOpen = (index) => {
+    handleDeleteFileDisplay(true);
+    setfileIndex(index);
+  };
+
+  const handleDeleteFileDialogClose = () => {
+    handleDeleteFileDisplay(false);
+  };
+
   const dialogStyle = {
     padding: "20px",
     height: "20rem",
@@ -129,6 +123,35 @@ function Dashboard() {
     fetch(process.env.REACT_APP_FILES_LINK, fetchOptions)
       .then((response) => {
         if (!response.ok) {
+          navigate("/login");
+        } else {
+          return response.json();
+        }
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    setfilename("");
+  };
+  const DeleteFile = () => {
+    const updatedFiles = [...files];
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
+      "Content-Type": "application/json",
+    };
+    const fetchOptions = {
+      method: "DELETE",
+      headers: headers,
+    };
+    fetch(
+      `${process.env.REACT_APP_FILES_LINK}/${updatedFiles[fileindex].filename}`,
+      fetchOptions
+    )
+      .then((response) => {
+        if (!response.ok) {
           toast("Login to use dashboard!", {
             icon: "⚠️",
             autoClose: 1000,
@@ -160,11 +183,7 @@ function Dashboard() {
         });
         navigate("/login");
       });
-    setfilename("");
-  };
-  const DeleteFile = (index) => {
-    const updatedFiles = [...files];
-    updatedFiles.splice(index, 1);
+    updatedFiles.splice(fileindex, 1);
     setfiles(updatedFiles);
   };
   return (
@@ -198,7 +217,9 @@ function Dashboard() {
                   <img
                     src={trashCan}
                     className="trash-can"
-                    onClick={() => DeleteFile(index)}
+                    onClick={() => {
+                      handleDeleteFileDialogOpen(index);
+                    }}
                   />
                 </div>
               );
@@ -206,10 +227,10 @@ function Dashboard() {
           </div>
         </div>
       </div>
-      <button onClick={openDialogBox} className="add-files">
+      <button onClick={handleCreateFileDialogOpen} className="add-files">
         Add Files
       </button>
-      <Dialog onClose={handleClose} open={openDialog}>
+      <Dialog onClose={handleCreateFileDialogClose} open={openCreateFileDialog}>
         <img className="folder-img" src={folders} />
         <h3 style={dialogStyle}>
           <input
@@ -222,10 +243,31 @@ function Dashboard() {
           <button
             onClick={(event) => {
               createfile();
-              handleClose();
+              handleCreateFileDialogClose();
             }}
             className="create-file-btn">
             Create
+          </button>
+        </h3>
+      </Dialog>
+      <Dialog onClose={handleDeleteFileDialogClose} open={openDeleteFileDialog}>
+        <img className="trash-can-img" src={trash} />
+        <h3 style={dialogStyle}>
+          <div className="delete-msg">
+            Are you sure that you want to delete the file?
+          </div>
+          <button
+            onClick={(event) => {
+              DeleteFile();
+              handleDeleteFileDialogClose();
+            }}
+            className="delete-file-btn">
+            Delete
+          </button>
+          <button
+            onClick={handleDeleteFileDialogClose}
+            className="delete-cancel-file-btn">
+            Cancel
           </button>
         </h3>
       </Dialog>
