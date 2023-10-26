@@ -26,7 +26,7 @@ function IO({backgroundColor, code, selectedLanguage}) {
     try {
       const response = await axios.request(options);
       const statusId = response.data.status.id;
-      console.log(statusId);
+      console.log(response);
       if (statusId === 1 || statusId === 2) {
         setTimeout(() => {
           CheckStatus(token);
@@ -70,7 +70,7 @@ function IO({backgroundColor, code, selectedLanguage}) {
       const response = await axios.request(options);
       CheckStatus(response.data.token);
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
   return (

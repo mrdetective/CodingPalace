@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Navbar from "../components/navbar";
 import logingif from "../assets/logingif.gif";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, json, useNavigate} from "react-router-dom";
 
 function CreateAccount() {
   const [email, setEmail] = useState("");
@@ -17,23 +17,24 @@ function CreateAccount() {
     if (res && checkPassword && !emptyField) {
       try {
         const data = {
-          name: name,
           email: email,
-          password: password,
         };
-        const response = await fetch(
-          process.env.REACT_APP_CREATE_ACCOUNT_LINK,
-          {
-            method: "POST",
-            headers: {
-              "Content-type": "application/json",
-            },
-            body: JSON.stringify(data),
-          }
-        );
+        const response = await fetch(process.env.REACT_APP_SEND_OTP, {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
         if (response.ok) {
-          navigate("/login", {replace: true});
-        } else {
+          const sendData = {
+            name: name,
+            email: email,
+            password: password,
+          };
+          navigate("/verify-otp", {
+            state: {sendData},
+          });
         }
       } catch (err) {
         console.log(err);

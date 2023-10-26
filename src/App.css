@@ -79,12 +79,11 @@
 }
 
 .Login:hover {
-  background-color: transparent;
-  color: #ad72fe;
+  background-color: #8c5cd0;
+  border: solid #8c5cd0;
 }
 .Create-Account:hover {
-  background-color: #ad72fe;
-  color: whitesmoke;
+  background-color: #282727b4;
 }
 .Logo {
   position: absolute;
@@ -118,6 +117,31 @@
   filter: hue-rotate(64deg);
   cursor: pointer;
 }
+
+.goto-dashboard {
+  position: absolute;
+  right: 5rem;
+  height: 2.5rem;
+  width: 8rem;
+  bottom: 0rem;
+  cursor: pointer;
+  z-index: 1;
+  font-size: 0.9rem;
+  background-color: #ad72fe;
+  color: whitesmoke;
+  text-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "AR One Sans", sans-serif;
+  border-radius: 5px;
+}
+
+.goto-dashboard:hover {
+  background: #8c5cd0;
+  /* border: solid #a262fb; */
+}
+
 /* CodeEditor */
 .Code-Editor {
   height: 100%;
@@ -317,8 +341,7 @@
 }
 
 .save-btn:hover {
-  background-color: #ad72fe;
-  color: whitesmoke;
+  background-color: #282727b4;
 }
 .landing-1 {
   margin-top: -1.9rem;
@@ -383,7 +406,7 @@
 .code-editor-gif {
   position: absolute;
   margin-top: 4rem;
-  margin-left: 50rem;
+  margin-left: 53rem;
   height: 20rem;
   width: 30rem;
   opacity: 0.9;
@@ -446,7 +469,7 @@
 }
 .lang-images img {
   height: 2rem;
-  margin-top: -3rem;
+  margin-top: 1rem;
   margin-right: 2rem;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -498,9 +521,9 @@
 }
 
 .coding-img {
-  height: 20rem;
-  margin-left: 63rem;
-  margin-top: -19rem;
+  height: 27rem;
+  margin-left: 56rem;
+  margin-top: -25rem;
   position: absolute;
 }
 
@@ -621,8 +644,7 @@ footer {
 }
 
 .login-btn:hover {
-  background-color: #ad72fe;
-  color: whitesmoke;
+  background-color: #282727b4;
 }
 
 .login-gif {
@@ -722,8 +744,7 @@ footer {
 }
 
 .createaccount-btn:hover {
-  background-color: #ad72fe;
-  color: whitesmoke;
+  background-color: #282727b4;
 }
 
 .create-account-gif {
@@ -965,4 +986,74 @@ footer {
 .delete-file-btn:hover {
   background-color: #ad72fe;
   color: whitesmoke;
+}
+
+.otp-box {
+  position: absolute;
+  height: 25rem;
+  width: 50rem;
+  margin-top: 50%;
+  background-size: cover;
+  opacity: 0.8;
+  display: flex;
+  justify-content: center;
+  /* background-color: #282828; */
+}
+
+.otp-img {
+  position: absolute;
+  height: 23rem;
+  margin-left: 20rem;
+  /* margin-top: 2rem; */
+  border: none;
+}
+
+.otp-heading {
+  font-family: "Space Mono", monospace;
+  z-index: 1;
+  color: #ad72fe;
+  margin-right: 29rem;
+  margin-top: 4rem;
+  position: absolute;
+}
+
+.otp-input {
+  z-index: 1;
+  border: solid #38363a;
+  background-color: transparent;
+  height: 2rem;
+  width: 15rem;
+  position: absolute;
+  margin-right: 24.5rem;
+  margin-top: 9rem;
+  border-width: 2px;
+  text-align: center;
+  color: white;
+}
+.verify-otp-btn {
+  z-index: 1;
+  height: 2rem;
+  width: 5rem;
+  margin-top: 13rem;
+  margin-right: 34.5rem;
+  position: absolute;
+  background-color: transparent;
+  border: solid #ad72fe;
+  color: #ad72fe;
+  cursor: pointer;
+}
+
+.verify-otp-btn:hover {
+  background-color: #ad72fe;
+  color: white;
+}
+
+.otp-note {
+  color: #ad72fe;
+  z-index: 1;
+  position: absolute;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-top: 16rem;
+  margin-right: 31rem;
+  color: #ad72fe;
 }

@@ -2,10 +2,11 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const OTP = require("../models/otpModel");
 
 const registerUser = asyncHandler(async (req, res) => {
-  const {name, email, password} = req.body;
-  if (!name || !email || !password) {
+  const {name, email, password, otp} = req.body;
+  if (!name || !email || !password || !otp) {
     res.status(400);
     throw new Error("All fields are mandatory!");
   }
@@ -13,6 +14,11 @@ const registerUser = asyncHandler(async (req, res) => {
   if (userAvailable) {
     res.status(400);
     throw new Error("User already registered");
+  }
+  const response = await OTP.find({email}).sort({createdAt: -1}).limit(1);
+  if (response.length === 0 || otp !== response[0].otp) {
+    res.status(400);
+    throw new Error("The otp is not valid");
   }
   const hashedPassword = await bcrypt.hash(password, 10);
   const user = await User.create({name, email, password: hashedPassword});

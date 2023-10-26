@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import Navbar from "../components/navbar";
-import compiler from "../assets/compiler.gif";
+import compiler from "../assets/compilerf.gif";
 import compiler2 from "../assets/compile-2.gif";
 import javascript from "../assets/javascript.png";
 import python from "../assets/python.png";
@@ -9,7 +9,7 @@ import typescript from "../assets/typescript.png";
 import instagram from "../assets/instagram.png";
 import linkedin from "../assets/linkedin.png";
 import github from "../assets/github.png";
-import coding from "../assets/coding.png";
+import coding from "../assets/planetrevolving3.gif";
 import {Link} from "react-router-dom";
 // import toast, {Toaster} from "react-hot-toast";
 
@@ -41,10 +41,11 @@ function Landing() {
               <div className="line-1"></div>
               <h3 className="Feature-text">What else do you get?</h3>
               <ul className="Feature-list">
-                <li>Supports 40+ Programing languages</li>
+                <li>Supports 40+ Programming languages</li>
                 <li>Supports 50+ Themes</li>
-                <li>Let's you code in the browser itself</li>
+                <li>Lets you code in the browser itself</li>
                 <li>Supports autocomplete in many programming languages.</li>
+                <li>Lets you save your programming files in your account.</li>
               </ul>
               <img className="compile-2" src={compiler2} />
               <div className="lang-images">

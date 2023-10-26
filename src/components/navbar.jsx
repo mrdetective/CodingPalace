@@ -62,6 +62,13 @@ function Navbar({backgroundColor}) {
               alt="logout"
             />
           </Link>
+          <Link to="/dashboard">
+            <div
+              className="goto-dashboard"
+              style={!loggedin ? {display: "none"} : {display: ""}}>
+              Go to dashboard
+            </div>
+          </Link>
         </div>
       </div>
     </nav>

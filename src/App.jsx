@@ -7,6 +7,7 @@ import CreateAccount from "./pages/CreateAccount";
 import Dashboard from "./pages/dashboard";
 import {ToastContainer} from "react-toastify";
 import PrivateRoutes from "./utils/PrivateRoutes";
+import VerifyOtp from "./pages/verifyOtp";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/nest" element={<Nest />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/createaccount" element={<CreateAccount />}></Route>
+          <Route path="/verify-otp" element={<VerifyOtp />}></Route>
           <Route element={<PrivateRoutes />}>
             <Route path="/dashboard" element={<Dashboard />}></Route>
             <Route path="/dashboard/:id" element={<Nest />}></Route>

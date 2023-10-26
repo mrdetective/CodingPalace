@@ -14,7 +14,7 @@ router.route("/").get(getCodingFiles).post(createCodingFiles);
 router
   .route("/:filename")
   .get(getCodingFile)
-  .put(updatecodingFile)
+  .patch(updatecodingFile)
   .delete(deleteCodingFile);
 
 module.exports = router;

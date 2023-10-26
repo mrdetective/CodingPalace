@@ -49,7 +49,7 @@ const getCodingFile = asyncHandler(async (req, res) => {
 const updatecodingFile = asyncHandler(async (req, res) => {
   const updatedcodingFile = await codingFiles.findOneAndUpdate(
     {
-      file_name: req.params,
+      file_name: req.params.filename,
       user_id: req.user.id,
     },
     req.body,

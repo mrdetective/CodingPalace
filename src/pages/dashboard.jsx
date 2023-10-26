@@ -39,7 +39,6 @@ function Dashboard() {
         }
       })
       .then((data) => {
-        // console.log(data[0]._id);
         const newfiles = [];
         data.forEach((element) => {
           var newfile = {
@@ -91,7 +90,7 @@ function Dashboard() {
       file_name: filename,
       code: btoa(""),
       theme: "vs-dark",
-      language: "Javascript",
+      language: "javascript",
       date_created: `${date.getDate()}-${
         date.getMonth() + 1
       }-${date.getFullYear()}`,
@@ -103,7 +102,7 @@ function Dashboard() {
       ...files,
       {
         filename: filename,
-        language: "Javascript",
+        language: "javascript",
         dateCreated: `${date.getDate()}-${
           date.getMonth() + 1
         }-${date.getFullYear()}`,
@@ -216,7 +215,7 @@ function Dashboard() {
                     {file.filename}
                   </div>
                   <div className="programming-language">
-                    Language: {file.language}``
+                    Language: {file.language}
                   </div>
                   <div className="date-created">
                     Date-Created: {file.dateCreated}
