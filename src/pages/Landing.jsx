@@ -11,10 +11,11 @@ import linkedin from "../assets/linkedin.png";
 import github from "../assets/github.png";
 import coding from "../assets/planetrevolving3.gif";
 import {Link} from "react-router-dom";
-// import toast, {Toaster} from "react-hot-toast";
+import files from "../assets/files.png";
 
 import "react-toastify/dist/ReactToastify.css";
 function Landing() {
+  sessionStorage.removeItem("data");
   return (
     <div>
       <Navbar backgroundColor="black" />
@@ -48,6 +49,7 @@ function Landing() {
                 <li>Lets you save your programming files in your account.</li>
               </ul>
               <img className="compile-2" src={compiler2} />
+              <img src={files} className="files-png" />
               <div className="lang-images">
                 <img className="python" src={python} />
                 <img className="cpp" src={cpp} />

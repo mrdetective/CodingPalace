@@ -2,14 +2,31 @@ import React, {useState} from "react";
 import Navbar from "../components/navbar";
 import logingif from "../assets/logingif.gif";
 import {Link, useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
+import view from "../assets/view.png";
+import hide from "../assets/hide.png";
 
 function Login() {
+  sessionStorage.removeItem("data");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setloading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const submitDetails = async () => {
+    setloading(true);
     if (!email || !password) {
-      console.log("No field should be empty");
+      toast("No field should be empty", {
+        icon: "⚠️",
+        autoClose: 1000,
+        position: "top-center",
+        style: {
+          borderRadius: "5px",
+          background: "#333131",
+          color: "whitesmoke",
+        },
+      });
+      setloading(false);
       return;
     }
     const data = {
@@ -25,12 +42,38 @@ function Login() {
     })
       .then((response) => response.json())
       .then((data) => {
-        localStorage.setItem("AccessToken", data.accessToken);
-        navigate("/dashboard");
+        if (data.accessToken) {
+          localStorage.setItem("AccessToken", data.accessToken);
+          navigate("/dashboard");
+        } else {
+          toast("Invalid credentials!", {
+            icon: "⚠️",
+            autoClose: 1000,
+            position: "top-center",
+            style: {
+              borderRadius: "5px",
+              background: "#333131",
+              color: "whitesmoke",
+            },
+          });
+        }
+        setloading(false);
       })
       .catch((error) => {
-        console.log("Incorrect email or password");
+        toast("Invalid credentials!", {
+          icon: "⚠️",
+          autoClose: 1000,
+          position: "top-center",
+          style: {
+            borderRadius: "5px",
+            background: "#333131",
+            color: "whitesmoke",
+          },
+        });
       });
+  };
+  const toggleEyeIcon = () => {
+    setShowPassword(!showPassword);
   };
   return (
     <div style={{background: "blue"}}>
@@ -49,12 +92,24 @@ function Login() {
             <input
               placeholder="Enter your password"
               className="login-password"
-              type="password"
+              type={!showPassword ? "password" : "text"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <img
+              onClick={toggleEyeIcon}
+              className="eye-icon"
+              src={!showPassword ? hide : view}></img>
             <button onClick={submitDetails} className="login-btn">
-              Log in
+              <p style={{display: loading ? "none" : ""}}>Login</p>
+              <div
+                className="lds-ring2"
+                style={{display: !loading ? "none" : ""}}>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
             </button>
             <div className="create-account-text">
               If you don't have an account, you can{" "}

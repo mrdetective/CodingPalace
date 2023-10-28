@@ -6,7 +6,9 @@ import {Link} from "react-router-dom";
 import logout from "../assets/logout.png";
 
 function Navbar({backgroundColor}) {
-  const [loggedin, setloggedin] = useState(false);
+  const [loggedin, setLoggedin] = useState(false);
+  const [fetchComplete, setFetchComplete] = useState(false);
+
   useEffect(() => {
     const headers = {
       Authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
@@ -23,12 +25,19 @@ function Navbar({backgroundColor}) {
         }
       })
       .then((data) => {
-        if (data) setloggedin(true);
+        if (data) {
+          setLoggedin(true);
+        }
+        setFetchComplete(true);
       })
       .catch((error) => {
-        // setloggedin(false);
+        setFetchComplete(true);
       });
   }, []);
+
+  if (!fetchComplete) {
+    return null;
+  }
   return (
     <nav className="navbar" style={{backgroundColor}}>
       <div className="nav-items">

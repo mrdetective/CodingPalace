@@ -2,15 +2,41 @@ import React, {useState} from "react";
 import Navbar from "../components/navbar";
 import logingif from "../assets/logingif.gif";
 import {Link, json, useNavigate} from "react-router-dom";
+import Dialog from "@mui/material/Dialog";
+import wrongimg from "../assets/wrong.svg";
 
 function CreateAccount() {
+  sessionStorage.removeItem("data");
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repassword, setrepassword] = useState("");
   const [name, setName] = useState("");
-  const navigate = useNavigate();
+  const [openCreateFileDialog, handleCreateFileDisplay] = useState(false);
+  const [Errmsg, setErrmsg] = useState("");
+  const [loading, setloading] = useState(false);
+
+  const handleCreateFileDialogClose = () => {
+    handleCreateFileDisplay(false);
+  };
+
+  const handleCreateFileDialogOpen = (message) => {
+    handleCreateFileDisplay(true);
+    setErrmsg(message);
+  };
+
+  const dialogStyle = {
+    padding: "20px",
+    height: "12rem",
+    width: "25rem",
+    display: "flex",
+    justifyContent: "center",
+    backgroundColor: "#282828",
+    overflowY: "hidden",
+  };
 
   const submitDetails = async () => {
+    setloading(true);
     let res = /\S+@\S+\.\S+/.test(email);
     let checkPassword = password === repassword;
     let emptyField = !email || !password || !name;
@@ -32,20 +58,21 @@ function CreateAccount() {
             email: email,
             password: password,
           };
-          navigate("/verify-otp", {
-            state: {sendData},
-          });
+          sessionStorage.setItem("data", JSON.stringify(sendData));
+          setloading(false);
+          navigate("/verify-otp");
         }
       } catch (err) {
         console.log(err);
       }
     } else {
+      setloading(false);
       if (!res) {
-        console.log("The email is not valid");
+        handleCreateFileDialogOpen("The email is not valid");
       } else if (!checkPassword) {
-        console.log("The passwords do not match");
+        handleCreateFileDialogOpen("The passwords did not match");
       } else {
-        console.log("Fields cannot be empty");
+        handleCreateFileDialogOpen("Fields cannot be empty");
       }
     }
   };
@@ -85,7 +112,15 @@ function CreateAccount() {
               onChange={(e) => setrepassword(e.target.value)}
             />
             <button className="createaccount-btn" onClick={submitDetails}>
-              Sign up
+              <p style={{display: loading ? "none" : ""}}>Sign up</p>
+              <div
+                className="lds-ring2"
+                style={{display: !loading ? "none" : ""}}>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
             </button>
             <div className="create-account-text">
               If you already have an account, you can{" "}
@@ -94,6 +129,15 @@ function CreateAccount() {
           </div>
         </div>
       </div>
+      <Dialog onClose={handleCreateFileDialogClose} open={openCreateFileDialog}>
+        <h3 style={dialogStyle}>
+          <img src={wrongimg} className="err-img" />
+          <div className="err-msg">{Errmsg}</div>
+          <button className="err-btn" onClick={handleCreateFileDialogClose}>
+            OK
+          </button>
+        </h3>
+      </Dialog>
     </div>
   );
 }

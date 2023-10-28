@@ -40,7 +40,6 @@ const sendverificationEmail = async (email, otp) => {
     </div>`
     );
   } catch (err) {
-    console.log("Error occured while sending email: ", err);
     throw err;
   }
 };

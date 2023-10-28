@@ -40,7 +40,6 @@ function CodeEditor({
         fetch(`${process.env.REACT_APP_FILES_LINK}/${filename}`, fetchOptions)
           .then((response) => {
             if (!response.ok) {
-              console.log(response);
             } else {
               return response.json();
             }
@@ -53,10 +52,24 @@ function CodeEditor({
             );
             setSelectedLanguage({language: data.language, id: foundOption.id});
           })
-          .catch((err) => {});
+          .catch((err) => {
+            console.log(err);
+          });
       }, 500);
     }
   }, []);
+
+  useEffect(() => {
+    if (filename) {
+      const intervalId = setInterval(() => {
+        handleUpdate(selectedLanguage);
+      }, 10000);
+      return () => {
+        clearInterval(intervalId);
+      };
+    }
+  }, []);
+
   const handleThemeChange = (event) => {
     const newTheme = event.target.value;
     setSelectedTheme(newTheme);
@@ -66,7 +79,6 @@ function CodeEditor({
     const optionKey = selectedOption.getAttribute("id");
     const newLanguage = {language: event.target.value, id: optionKey};
     setSelectedLanguage(newLanguage);
-    console.log(selectedLanguage);
   };
   let handleUpdate = async (language) => {
     const date = new Date();
@@ -92,18 +104,7 @@ function CodeEditor({
       `${process.env.REACT_APP_FILES_LINK}/${filename}`,
       fetchOptions
     );
-    if (response.ok) {
-      toast("File saved", {
-        icon: "✅",
-        autoClose: 1000,
-        position: "top-center",
-        style: {
-          borderRadius: "5px",
-          background: "#333131",
-          color: "whitesmoke",
-        },
-      });
-    } else {
+    if (!response.ok) {
       toast("Sorry but you can't save this file", {
         icon: "⚠️",
         autoClose: 1000,
@@ -116,6 +117,19 @@ function CodeEditor({
       });
       navigate("/dashboard");
     }
+  };
+  let callHandleUpdate = () => {
+    handleUpdate(selectedLanguage);
+    toast("File saved", {
+      icon: "✅",
+      autoClose: 1000,
+      position: "top-center",
+      style: {
+        borderRadius: "5px",
+        background: "#333131",
+        color: "whitesmoke",
+      },
+    });
   };
   return (
     <div>
@@ -141,7 +155,7 @@ function CodeEditor({
       </select>
       <button
         onClick={() => {
-          handleUpdate(selectedLanguage);
+          callHandleUpdate();
         }}
         className="save-btn"
         style={savebtn ? {} : {display: "none"}}>

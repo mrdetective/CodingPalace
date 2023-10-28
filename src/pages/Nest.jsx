@@ -5,6 +5,7 @@ import IO from "../components/IO";
 import {useLocation, useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
 function Nest() {
+  sessionStorage.removeItem("data");
   const [code, setCode] = useState("");
   const [savebtn, setsavebtn] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState({

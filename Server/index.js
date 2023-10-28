@@ -12,5 +12,6 @@ app.use(express.json());
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/codingfiles", require("./routes/CodeRoutes"));
 app.use("/api/otp", require("./routes/otpRoutes"));
+app.use("/api/compile", require("./routes/compileCodeRoutes"));
 app.use(errorHandler);
 app.listen(port);

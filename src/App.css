@@ -455,17 +455,28 @@
 }
 
 .compile-2 {
-  height: 20rem;
-  margin-top: -4rem;
+  height: 15rem;
   margin-left: 5rem;
+  margin-top: -10rem;
   border-radius: 10px;
   opacity: 0.9;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.files-png {
+  position: absolute;
+  height: 15.1rem;
+  border-radius: 10px;
+  opacity: 0.8;
+  margin-left: -25rem;
+  margin-top: 10rem;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 .lang-images {
   position: absolute;
   margin-left: 60rem;
+  margin-top: 12rem;
 }
 .lang-images img {
   height: 2rem;
@@ -525,13 +536,14 @@
   margin-left: 56rem;
   margin-top: -25rem;
   position: absolute;
+  filter: hue-rotate(259deg);
 }
 
 .lds-ring {
   display: inline-block;
   position: absolute;
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   margin-top: -1.1rem;
   margin-left: -5rem;
 }
@@ -641,6 +653,9 @@ footer {
   border: solid #ad72fe;
   color: #ad72fe;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-btn:hover {
@@ -656,6 +671,15 @@ footer {
   color: rgb(215, 196, 246);
   font-family: "AR One Sans", sans-serif;
   margin-top: 34rem;
+}
+
+.eye-icon {
+  position: absolute;
+  height: 1.5rem;
+  margin-top: 15rem;
+  margin-right: 19rem;
+  filter: hue-rotate(-9deg) brightness(70%);
+  cursor: pointer;
 }
 
 /* Create Account */
@@ -741,6 +765,9 @@ footer {
   border: solid #ad72fe;
   color: #ad72fe;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .createaccount-btn:hover {
@@ -803,8 +830,7 @@ footer {
   height: 100%;
   width: 90%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
-  gap: 14rem;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .files {
@@ -816,13 +842,9 @@ footer {
   cursor: pointer;
 }
 
-.file-limit-notice {
-  font-size: 1.2rem;
-}
-
 .filename {
   color: #ad72fe;
-  font-family: "Encode Sans SC", sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   position: absolute;
   margin-top: 9rem;
   margin-left: 1rem;
@@ -1041,11 +1063,13 @@ footer {
   border: solid #ad72fe;
   color: #ad72fe;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .verify-otp-btn:hover {
-  background-color: #ad72fe;
-  color: white;
+  background-color: #333;
 }
 
 .otp-note {
@@ -1056,4 +1080,82 @@ footer {
   margin-top: 16rem;
   margin-right: 31rem;
   color: #ad72fe;
+}
+
+.lds-ring2 {
+  display: inline-block;
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  margin-top: -1.5rem;
+  margin-left: -1.2rem;
+  z-index: 1;
+}
+
+.lds-ring2 div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin: 8px;
+  border: 3px solid #ad72fe;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #ad72fe transparent transparent transparent;
+}
+
+.lds-ring2 div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring2 div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring2 div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+/* Create account error */
+.err-msg {
+  color: whitesmoke;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: #8c5cd0;
+  margin-top: 6.5rem;
+  position: absolute;
+}
+
+.err-img {
+  height: 4.3rem;
+  margin-top: 0.9rem;
+}
+
+.err-btn {
+  position: absolute;
+  height: 2rem;
+  width: 3rem;
+  background: transparent;
+  color: #ad72fe;
+  border: solid #ad72fe;
+  margin-top: 9.4rem;
+  cursor: pointer;
+}
+
+.err-btn:hover {
+  color: whitesmoke;
+  background-color: #ad72fe;
+}
+
+.resend-otp {
+  color: #d7befb;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-top: 18rem;
+  margin-right: 27rem;
+  position: absolute;
+  font-size: 0.7rem;
+}
+
+.resend-link {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
 }

@@ -6,6 +6,7 @@ const OTP = require("../models/otpModel");
 
 const registerUser = asyncHandler(async (req, res) => {
   const {name, email, password, otp} = req.body;
+  console.log(name, email, password, otp);
   if (!name || !email || !password || !otp) {
     res.status(400);
     throw new Error("All fields are mandatory!");
@@ -48,7 +49,7 @@ const loginUser = asyncHandler(async (req, res) => {
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
-      {expiresIn: "1h"}
+      {expiresIn: "1d"}
     );
     res.json({accessToken});
   } else {

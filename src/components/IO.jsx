@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import runimg from "../assets/run.png";
-import axios from "axios";
 
 function IO({backgroundColor, code, selectedLanguage}) {
   const [loading, setloading] = useState(false);
@@ -10,42 +9,12 @@ function IO({backgroundColor, code, selectedLanguage}) {
   const [time, setTime] = useState("");
   const [memory, setMemory] = useState("");
 
-  const CheckStatus = async (token) => {
-    const options = {
-      method: "GET",
-      url: process.env.REACT_APP_SUBMISSION_URL + "/" + token,
-      params: {
-        base64_encoded: "true",
-        fields: "*",
-      },
-      headers: {
-        "X-RapidAPI-Key": process.env.REACT_APP_RAPIDAPI_KEY,
-        "X-RapidAPI-Host": process.env.REACT_APP_RAPIDAPI_HOST,
-      },
-    };
-    try {
-      const response = await axios.request(options);
-      const statusId = response.data.status.id;
-      console.log(response);
-      if (statusId === 1 || statusId === 2) {
-        setTimeout(() => {
-          CheckStatus(token);
-        }, 2000);
-        return;
-      } else {
-        setOutput(atob(response.data.stdout));
-        setStatus(response.data.status.description);
-        setTime(response.data.time);
-        setMemory(response.data.memory);
-        setloading(false);
-      }
-    } catch (error) {
-      setloading(false);
-      console.error(error);
-    }
-  };
   const CompileCode = async () => {
     setloading(true);
+    if (code === "") {
+      setloading(false);
+      return;
+    }
     const formdata = {
       language_id: parseInt(selectedLanguage.id),
       source_code: btoa(code),
@@ -53,22 +22,19 @@ function IO({backgroundColor, code, selectedLanguage}) {
     };
     const options = {
       method: "POST",
-      url: process.env.REACT_APP_SUBMISSION_URL,
-      params: {
-        base64_encoded: "true",
-        fields: "*",
-      },
       headers: {
         "content-type": "application/json",
-        "Content-Type": "application/json",
-        "X-RapidAPI-Key": process.env.REACT_APP_RAPIDAPI_KEY,
-        "X-RapidAPI-Host": process.env.REACT_APP_RAPIDAPI_HOST,
       },
-      data: formdata,
+      body: JSON.stringify(formdata),
     };
     try {
-      const response = await axios.request(options);
-      CheckStatus(response.data.token);
+      const response = await fetch(process.env.REACT_APP_COMPILE_LINK, options);
+      const data = await response.json();
+      setOutput(atob(data.stdout));
+      setStatus(data.status);
+      setTime(data.time);
+      setMemory(data.memory);
+      setloading(false);
     } catch (error) {
       console.log(error);
     }

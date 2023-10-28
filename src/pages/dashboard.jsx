@@ -13,6 +13,7 @@ import folders from "../assets/folders.png";
 import trash from "../assets/trash.png";
 
 function Dashboard() {
+  sessionStorage.removeItem("data");
   const navigate = useNavigate();
   const [openCreateFileDialog, handleCreateFileDisplay] = useState(false);
   const [openDeleteFileDialog, handleDeleteFileDisplay] = useState(false);
@@ -32,7 +33,6 @@ function Dashboard() {
     fetch(process.env.REACT_APP_FILES_LINK, fetchOptions)
       .then((response) => {
         if (!response.ok) {
-          console.log(response);
           navigate("/login");
         } else {
           return response.json();
@@ -84,7 +84,7 @@ function Dashboard() {
     overflowY: "hidden",
   };
 
-  const createfile = () => {
+  const createfile = async () => {
     const date = new Date();
     const newfile = {
       file_name: filename,
@@ -111,7 +111,6 @@ function Dashboard() {
         }-${date.getFullYear()}`,
       },
     ];
-    setfiles(newfiles);
     const headers = {
       Authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
       "Content-Type": "application/json",
@@ -124,13 +123,24 @@ function Dashboard() {
     fetch(process.env.REACT_APP_FILES_LINK, fetchOptions)
       .then((response) => {
         if (!response.ok) {
-          navigate("/login");
+          toast("Sorry but the filename already exists", {
+            icon: "⚠️",
+            autoClose: 3000,
+            position: "top-center",
+            style: {
+              borderRadius: "5px",
+              background: "#333131",
+              color: "whitesmoke",
+            },
+          });
+          throw new Error("Name already exist");
         } else {
           return response.json();
         }
       })
       .then((data) => {
         console.log(data);
+        setfiles(newfiles);
       })
       .catch((error) => {
         console.log(error);
@@ -192,12 +202,7 @@ function Dashboard() {
       <Navbar backgroundColor={"rgb(23 22 22)"} />
       <div className="bigbox">
         <div className="file-box">
-          <h2 className="filebox-heading">
-            Your files{" "}
-            <span className="file-limit-notice">
-              (Note: You cannot add more than 8 files at a time)
-            </span>
-          </h2>
+          <h2 className="filebox-heading">Your files:</h2>
           <div className="file-list">
             {files.map((file, index) => {
               return (
