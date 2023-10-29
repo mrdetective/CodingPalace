@@ -3,7 +3,6 @@ import Navbar from "../components/navbar";
 import {useNavigate, Link} from "react-router-dom";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import plus from "../assets/plus-icon.png";
 import code from "../assets/code.png";
 import trashCan from "../assets/trash-can.png";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -206,19 +205,18 @@ function Dashboard() {
           <div className="file-list">
             {files.map((file, index) => {
               return (
-                <div className="files" key={`${file.id}`}>
+                <div
+                  className="files"
+                  key={`${file.id}`}
+                  onClick={(e) => {
+                    navigate(`/dashboard/${file.filename}`, {
+                      state: file.filename,
+                    });
+                  }}>
                   <div className="thumbnail">
                     <img className="thumbnail-img" src={code} alt="Thumbnail" />
                   </div>
-                  <div
-                    className="filename"
-                    onClick={(e) => {
-                      navigate(`/dashboard/${file.filename}`, {
-                        state: file.filename,
-                      });
-                    }}>
-                    {file.filename}
-                  </div>
+                  <div className="filename">{file.filename}</div>
                   <div className="programming-language">
                     Language: {file.language}
                   </div>
@@ -231,7 +229,8 @@ function Dashboard() {
                   <img
                     src={trashCan}
                     className="trash-can"
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       handleDeleteFileDialogOpen(index);
                     }}
                   />

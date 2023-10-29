@@ -3,7 +3,7 @@ import Navbar from "../components/navbar";
 import logingif from "../assets/logingif.gif";
 import {Link, json, useNavigate} from "react-router-dom";
 import Dialog from "@mui/material/Dialog";
-import wrongimg from "../assets/wrong.svg";
+import wrongimg from "../assets/wrong.png";
 
 function CreateAccount() {
   sessionStorage.removeItem("data");
