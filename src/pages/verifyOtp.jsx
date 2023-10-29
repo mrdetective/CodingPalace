@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
-import planet from "../assets/planetrevolving2.gif";
+import planet from "../assets/planetrevolving2.json";
 import {useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
+import Lottie from "lottie-react";
 
 function VerifyOtp() {
   const navigate = useNavigate();
@@ -103,7 +104,7 @@ function VerifyOtp() {
     <div>
       <div className="bigbox">
         <div className="otp-box">
-          <img className="otp-img" src={planet} />
+          <Lottie className="otp-img" animationData={planet} />
           <h1 className="otp-heading">Enter otp</h1>
           <p className="otp-note">**check your spam box</p>
           <p className="resend-otp">

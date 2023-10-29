@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import Navbar from "../components/navbar";
-import logingif from "../assets/logingif.gif";
+import logingif from "../assets/loginanimation.json";
 import {Link, json, useNavigate} from "react-router-dom";
 import Dialog from "@mui/material/Dialog";
 import wrongimg from "../assets/wrong.png";
+import Lottie from "lottie-react";
 
 function CreateAccount() {
   sessionStorage.removeItem("data");
@@ -83,7 +84,7 @@ function CreateAccount() {
       <div className="bigbox">
         <div className="main-createaccount-box">
           <div className="createaccount-box">
-            <img className="create-account-gif" src={logingif} />
+            <Lottie className="create-account-gif" animationData={logingif} />
             <input
               placeholder="Enter your Name"
               className="createaccount-name"

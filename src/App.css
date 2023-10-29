@@ -532,11 +532,11 @@
 }
 
 .coding-img {
-  height: 27rem;
-  margin-left: 56rem;
-  margin-top: -25rem;
+  height: 18rem;
+  margin-left: 60rem;
+  margin-top: -19rem;
   position: absolute;
-  filter: hue-rotate(259deg);
+  filter: hue-rotate(95deg);
 }
 
 .lds-ring {
@@ -666,6 +666,8 @@ footer {
   position: absolute;
   height: 15rem;
   margin-bottom: 16rem;
+  margin-top: 5rem;
+  /* filter: hue-rotate(60deg); */
 }
 .create-account-text {
   color: rgb(215, 196, 246);
@@ -1024,10 +1026,11 @@ footer {
 
 .otp-img {
   position: absolute;
-  height: 23rem;
-  margin-left: 20rem;
-  /* margin-top: 2rem; */
+  height: 20rem;
+  margin-left: 25rem;
+  margin-top: 0rem;
   border: none;
+  filter: hue-rotate(300deg);
 }
 
 .otp-heading {

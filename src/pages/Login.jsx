@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 import Navbar from "../components/navbar";
-import logingif from "../assets/logingif.gif";
+import loginimg from "../assets/loginanimation.json";
 import {Link, useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
 import view from "../assets/view.png";
 import hide from "../assets/hide.png";
+import Lottie from "lottie-react";
 
 function Login() {
   sessionStorage.removeItem("data");
@@ -81,7 +82,7 @@ function Login() {
       <div className="bigbox">
         <div className="main-login-box">
           <div className="login-box">
-            <img className="login-gif" src={logingif} />
+            <Lottie animationData={loginimg} className="login-gif"></Lottie>
             <input
               placeholder="Enter your email address"
               className="login-email"

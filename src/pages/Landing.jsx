@@ -9,11 +9,12 @@ import typescript from "../assets/typescript.png";
 import instagram from "../assets/instagram.png";
 import linkedin from "../assets/linkedin.png";
 import github from "../assets/github.png";
-import coding from "../assets/planetrevolving3.gif";
+import coding from "../assets/planetrevolving3.json";
 import {Link} from "react-router-dom";
 import files from "../assets/files.png";
-
 import "react-toastify/dist/ReactToastify.css";
+import Lottie from "lottie-react";
+
 function Landing() {
   sessionStorage.removeItem("data");
   return (
@@ -76,7 +77,7 @@ function Landing() {
                   <img className="instagram" src={instagram} />
                 </Link>
               </div>
-              <img className="coding-img" src={coding}></img>
+              <Lottie className="coding-img" animationData={coding}></Lottie>
             </div>
             <footer>
               Powered by:{" "}
