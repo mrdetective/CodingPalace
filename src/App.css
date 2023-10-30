@@ -101,7 +101,7 @@
 .logout {
   position: absolute;
   margin-top: -1.4rem;
-  right: 2rem;
+  right: 5rem;
   border-left: solid #38363a;
   border-width: 2px;
   height: 2.5rem;
@@ -109,13 +109,28 @@
   display: flex;
   align-items: center;
 }
-.logout-img {
+.logout-text {
   position: absolute;
-  left: 1rem;
+  left: 3rem;
   height: 2.5rem;
   bottom: 0rem;
+  top: 0.5rem;
+  /* filter: hue-rotate(64deg); */
+  cursor: pointer;
+  color: #ad72fe;
+  text-decoration: none;
+}
+
+.logout-img {
+  position: absolute;
+  right: 3.5rem;
+  height: 2.5rem;
+  bottom: 0rem;
+  bottom: 0.4rem;
   filter: hue-rotate(64deg);
   cursor: pointer;
+  color: whitesmoke;
+  text-decoration: none;
 }
 
 .goto-dashboard {
@@ -1161,4 +1176,41 @@ footer {
   color: blue;
   text-decoration: underline;
   cursor: pointer;
+}
+
+/* Warning page */
+
+.warning-bigbox {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.warning-box {
+  border: solid #ad72fe;
+  max-width: 30rem;
+  width: 90%;
+  height: auto;
+  border-radius: 2rem;
+  background-color: #ad72fe;
+  margin: 10% auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: whitesmoke;
+  font-family: monospace;
+  padding-bottom: 2rem;
+}
+
+.warning-text {
+  max-width: 26rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+.sorry-img {
+  width: 36%;
+  height: 64%;
+  margin-top: 0rem;
 }

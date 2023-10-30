@@ -8,6 +8,8 @@ import Dashboard from "./pages/dashboard";
 import {ToastContainer} from "react-toastify";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import VerifyOtp from "./pages/verifyOtp";
+import NotAllowed from "./utils/notallowed";
+import ErrorPage from "./pages/errorPage";
 
 function App() {
   return (
@@ -15,14 +17,17 @@ function App() {
       <ToastContainer />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing />}></Route>
-          <Route path="/nest" element={<Nest />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/createaccount" element={<CreateAccount />}></Route>
-          <Route path="/verify-otp" element={<VerifyOtp />}></Route>
-          <Route element={<PrivateRoutes />}>
-            <Route path="/dashboard" element={<Dashboard />}></Route>
-            <Route path="/dashboard/:id" element={<Nest />}></Route>
+          <Route path="/error" element={<ErrorPage />}></Route>
+          <Route element={<NotAllowed />}>
+            <Route path="/" element={<Landing />}></Route>
+            <Route path="/nest" element={<Nest />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/createaccount" element={<CreateAccount />}></Route>
+            <Route path="/verify-otp" element={<VerifyOtp />}></Route>
+            <Route element={<PrivateRoutes />}>
+              <Route path="/dashboard" element={<Dashboard />}></Route>
+              <Route path="/dashboard/:id" element={<Nest />}></Route>
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

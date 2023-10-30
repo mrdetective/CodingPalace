@@ -4,6 +4,7 @@ import {languageOptions} from "../utils/languages";
 import {allthemes} from "../utils/getThemes";
 import {Link} from "react-router-dom";
 import logout from "../assets/logout.png";
+import {toast} from "react-toastify";
 
 function Navbar({backgroundColor}) {
   const [loggedin, setLoggedin] = useState(false);
@@ -62,14 +63,24 @@ function Navbar({backgroundColor}) {
           className="logout"
           style={!loggedin ? {display: "none"} : {display: ""}}>
           <Link to="/login">
-            <img
+            <div
               onClick={(e) => {
                 localStorage.removeItem("AccessToken");
+                toast("Successfully logged out!", {
+                  icon: "✅",
+                  autoClose: 1000,
+                  position: "top-center",
+                  style: {
+                    borderRadius: "5px",
+                    background: "#333131",
+                    color: "whitesmoke",
+                  },
+                });
               }}
-              className="logout-img"
-              src={logout}
-              alt="logout"
-            />
+              className="logout-text">
+              Logout
+              <img src={logout} className="logout-img" />
+            </div>
           </Link>
           <Link to="/dashboard">
             <div
